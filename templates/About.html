@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Disease Detection & Farming Stages</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #eef5f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #007BFF;
+        }
+        .team {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .team-member {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #007BFF;
+            transition: transform 0.3s ease-in-out;
+        }
+        .team-member:hover {
+            transform: scale(1.05);
+            background: #e3f2fd;
+        }
+        .guide {
+            background: linear-gradient(135deg, #091829, #004b8d);
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            margin: auto;
+            border: 3px solid #007BFF;
+        }
+        .guide:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        .process-step, .timeline li {
+            background-color: #e3f2fd;
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid #007BFF;
+        }
+        .process-step:hover, .timeline li:hover {
+            background-color: #bbdefb;
+            transform: scale(1.05);
+        }
+        /* Menu */
+        .menu {
+            position: absolute;
+            top: 60px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            width: 220px;
+            z-index: 1000;
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: 0.4s;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    <div class="menu" id="menu">  
+        <a href="#">About</a>
+        <a href="http://127.0.0.1:5500/templates/prevention.html">Prevention & Causes</a>
+        <a href="http://127.0.0.1:5500/templates/index.html">Prediction</a>
+    </div>
+    <div class="container">
+        <h1>🐟 Fish Disease Detection & Farming Growth</h1>
+        <h2>👩‍💻 Meet the Team</h2>
+        <div class="team">
+            <div class="team-member"><h3>K. Kavyanjali</h3></div>
+            <div class="team-member"><h3>S. Jayasri</h3></div>
+            <div class="team-member"><h3>G. Mounika</h3></div>
+            <div class="team-member"><h3>P. Amrutha Valli</h3></div>
+        </div>
+        <div class="guide">
+            <h3>🎓 Our Guide</h3>
+            <h3>Abdul Aziz</h3>
+            <p>Master Trainer in AI, ML, Deep Learning, and Computer Vision, Edunet Foundation.</p>
+        </div>
+        <h2>🔬 How Our Disease Detection Works</h2>
+        <div class="process">
+            <div class="process-step"><h3>Step 1: Image Collection</h3><p>Farmers upload images of fish suspected to have diseases.</p></div>
+            <div class="process-step"><h3>Step 2: AI Analysis</h3><p>Our deep learning model scans for disease patterns.</p></div>
+            <div class="process-step"><h3>Step 3: Diagnosis & Treatment</h3><p>Providing accurate disease detection with treatment suggestions.</p></div>
+        </div>
+        <h2>📈 Fish Farming Growth Timeline</h2>
+        <div class="timeline">
+            <ul>
+                <li><strong>Pond Preparation:</strong> Cleaning, disinfecting, and adjusting pH levels.</li>
+                <li><strong>Stocking the Fish:</strong> Selecting and acclimatizing healthy fingerlings.</li>
+                <li><strong>Feeding Management:</strong> Providing balanced feed for optimal growth.</li>
+                <li><strong>Water Quality Monitoring:</strong> Checking oxygen levels, ammonia, and pH balance.</li>
+                <li><strong>Fish Growth Tracking:</strong> Measuring fish weight and size regularly.</li>
+                <li><strong>Disease Prevention & Treatment:</strong> Identifying symptoms early and applying treatments.</li>
+                <li><strong>Harvesting & Selling:</strong> Ensuring proper harvesting and market storage.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ✅ JavaScript for Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("menu");
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+            } else {
+                menu.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

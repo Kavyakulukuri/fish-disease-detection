@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Disease Prevention & Causes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        h1 {
+            color: #007BFF;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .info-box {
+            background-color: #e9ecef;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            transition: all 0.3s ease-in-out;
+            text-align: left;
+        }
+        .disease-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fish Disease Prevention & Causes</h1>
+        <p>Select a disease to view its image, causes, and prevention methods.</p>
+        
+        <label for="diseaseSelect"><strong>Choose a Disease:</strong></label>
+        <select id="diseaseSelect" onchange="showDiseaseInfo()">
+            <option value="">-- Select a Disease --</option>
+            <option value="whiteTail">White Tail Disease (Viral)</option>
+            <option value="parasitic">Parasitic Diseases</option>
+            <option value="healthyFish">Healthy Fish</option>
+            <option value="saprolegniasis">Saprolegniasis (Fungal)</option>
+            <option value="bacterialGill">Bacterial Gill Disease</option>
+            <option value="aeromoniasis">Aeromoniasis (Bacterial)</option>
+            <option value="redDisease">Bacterial Red Disease</option>
+        </select>
+
+        <button onclick="toggleLanguage('en')">English</button>
+        <button onclick="toggleLanguage('te')">Telugu</button>
+
+        <div id="diseaseInfo" class="info-box">
+            <h2 id="diseaseTitle"></h2>
+            <img id="diseaseImg" class="disease-img" src="" alt="Disease Image">
+            <p><strong>Causes:</strong> <span id="diseaseCauses"></span></p>
+            <p><strong>Prevention:</strong> <span id="diseasePrevention"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const diseaseData = {
+            whiteTail: {
+                title: "White Tail Disease (Viral)",
+                img:  " https://nippyfish.net/wp-content/uploads/2017/03/Fungus-betta-fish.jpg",
+                causes: {
+                    en: "Caused by a viral infection leading to tail discoloration and slow movement.",
+                    te: "వైరల్ ఇన్ఫెక్షన్ వల్ల తోక రంగు మారడం మరియు మందగించిన కదలికలు వస్తాయి."
+                },
+                prevention: {
+                    en: "Maintain proper water hygiene, quarantine new fish, and avoid contaminated water.",
+                    te: "శుభ్రమైన నీటిని నిలిపివేయడం, కొత్త చేపలను క్వారంటైన్ చేయడం, కాలుష్యజలాన్ని నివారించడం."
+                }
+            },
+            parasitic: {
+                title: "Parasitic Diseases",
+                img: "https://www.jbl.de/images/container/w608_h364/71033.jpg",
+                causes: {
+                    en: "Caused by parasites like protozoa and worms, often due to poor water conditions.",
+                    te: "పరాన్నజీవులైన ప్రోటోజోవా మరియు పాము వంటి జీవులు, నీటి మలినత వల్ల ఉత్పన్నమవుతాయి."
+                },
+                prevention: {
+                    en: "Regular water changes, UV sterilization, and anti-parasitic treatments.",
+                    te: "క్రమంగా నీటిని మార్చడం, UV స్టెరిలైజేషన్ ఉపయోగించడం, పరాన్నజీవి నివారణ ఔషధాలను ఉపయోగించడం."
+                }
+            },
+            healthyFish: {
+                title: "Healthy Fish",
+                img: "https://www.agrifarming.in/wp-content/uploads/2015/06/Tilapia-Fish.jpg",
+                causes: {
+                    en: "No diseases - this is a healthy fish!",
+                    te: "రోగాలేమీ లేవు - ఇది ఆరోగ్యకరమైన చేప!"
+                },
+                prevention: {
+                    en: "Maintain good water quality, provide proper diet, and monitor regularly.",
+                    te: "మంచి నీటి నాణ్యతను కాపాడుకోవడం, సరైన ఆహారాన్ని అందించటం, క్రమంగా పర్యవేక్షించడం."
+                }
+            },
+            saprolegniasis: {
+                title: "Saprolegniasis (Fungal)",
+                img: "https://aquainfo.org/wp-content/uploads/2024/02/Saprolegnia-or-Fungus-on-a-fish2-jpg.webp",
+                causes: {
+                    en: "Fungal infection caused by injuries, poor water quality, and dead organic matter.",
+                    te: "గాయాలు, మలిన నీరు, మరణించిన జీవ పదార్థాల వల్ల ఫంగల్ ఇన్ఫెక్షన్ వస్తుంది."
+                },
+                prevention: {
+                    en: "Remove dead material, use antifungal treatments, and keep water clean.",
+                    te: "మరణించిన పదార్థాలను తీసివేయడం, యాంటీ ఫంగల్ ట్రీట్మెంట్ ఉపయోగించడం, శుభ్రమైన నీటిని కాపాడడం."
+                }
+            },
+            bacterialGill: {
+                title: "Bacterial Gill Disease",
+                img: "https://interpet.co.uk/wp-content/uploads/2022/01/Gill-Diesease-2.jpg",
+                causes: {
+                    en: "Caused by high ammonia levels and low oxygen, leading to bacterial infection.",
+                    te: "అధిక అమోనియా స్థాయిలు మరియు తక్కువ ఆక్సిజన్ అందక వల్ల బ్యాక్టీరియా ఇన్ఫెక్షన్ వస్తుంది."
+                },
+                prevention: {
+                    en: "Improve water circulation, reduce ammonia levels, and use antibiotic treatments.",
+                    te: "నీటి ప్రవాహాన్ని మెరుగుపరచడం, అమోనియా స్థాయిలను తగ్గించడం, యాంటీబయోటిక్ చికిత్సలు చేయడం."
+                }
+            },
+            aeromoniasis: {
+                title: "Aeromoniasis (Bacterial)",
+                img: "https://www.shutterstock.com/image-photo/fish-infe…eaeromonas-hydrophila-infect-600nw-1998990323.jpg",
+                causes: {
+                    en: "Caused by Aeromonas bacteria due to overcrowding and poor water conditions.",
+                    te: "అధిక జనసంచారం మరియు మలిన నీటి కారణంగా Aeromonas బ్యాక్టీరియా పెరుగుతుంది."
+                },
+                prevention: {
+                    en: "Avoid overcrowding, maintain clean water, and use antibiotics if necessary.",
+                    te: "ఎక్కువ చేపలను కలపకుండా ఉండటం, క్రమంగా నీటిని శుభ్రం చేయడం, అవసరమైనప్పుడు యాంటీబయోటిక్స్ వాడటం."
+                }
+            },
+            redDisease: {
+                title: "Bacterial Red Disease",
+                img: "https://fishdoc.co.uk/wp-content/uploads/2020/01/ulcer_03__body.jpg ",
+                causes: {
+                    en: "Bacterial infection causing red sores and bleeding in fish.",
+                    te: "బ్యాక్టీరియా ఇన్ఫెక్షన్ వల్ల చేపల శరీరంలో ఎరుపు గాయం మరియు రక్తస్రావం కనిపిస్తాయి."
+                },
+                prevention: {
+                    en: "Keep water clean, isolate infected fish, and use antibiotic medications.",
+                    te: "నీటిని శుభ్రంగా ఉంచడం, సోకిన చేపలను వేరుగా ఉంచడం, యాంటీబయోటిక్ ఔషధాలను ఉపయోగించడం."
+                }
+            }
+        };
+
+        let currentLanguage = 'en';
+
+        function showDiseaseInfo() {
+            let selectedDisease = document.getElementById("diseaseSelect").value;
+            let diseaseInfoBox = document.getElementById("diseaseInfo");
+
+            if (selectedDisease) {
+                document.getElementById("diseaseTitle").innerText = diseaseData[selectedDisease].title;
+                document.getElementById("diseaseImg").src = diseaseData[selectedDisease].img;
+                document.getElementById("diseaseCauses").innerText = diseaseData[selectedDisease].causes[currentLanguage];
+                document.getElementById("diseasePrevention").innerText = diseaseData[selectedDisease].prevention[currentLanguage];
+                diseaseInfoBox.style.display = "block";
+            } else {
+                diseaseInfoBox.style.display = "none";
+            }
+        }
+
+        function toggleLanguage(lang) {
+            currentLanguage = lang;
+            showDiseaseInfo();
+        }
+    </script>
+</body>
+</html>

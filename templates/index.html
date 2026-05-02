@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Disease Detection</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #preview {
+            margin-top: 20px;
+            max-width: 300px;
+            display: none;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fish Disease Detection</h1>
+    <input type="file" id="fileInput" accept="image/*">
+    <button onclick="uploadImage()">Predict</button>
+    
+    <h3 id="predictionResult"></h3>
+    <img id="preview" src="" alt="Uploaded Image">
+
+    <script>
+        function uploadImage() {
+            var file = $("#fileInput")[0].files[0];
+
+            if (!file) {
+                $("#predictionResult").html("⚠ Please select an image").addClass("error");
+                return;
+            }
+
+            var formData = new FormData();
+            formData.append("file", file);
+
+            $.ajax({
+                url: "http://127.0.0.1:5000/predict",  // Flask backend URL
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    console.log("✅ Server Response:", response);
+
+                    if (response.prediction) {
+                        $("#predictionResult").html("Prediction: " + response.prediction).removeClass("error");
+                        $("#preview").attr("src", response.image_url).show();
+                    } else {
+                        $("#predictionResult").html("⚠ No prediction received").addClass("error");
+                    }
+                },
+                error: function(xhr) {
+                    console.error("❌ Error Status:", xhr.status);
+                    console.error("❌ Error Response:", xhr.responseText);
+
+                    $("#predictionResult").html("Error: " + (xhr.responseJSON ? xhr.responseJSON.error : xhr.responseText)).addClass("error");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

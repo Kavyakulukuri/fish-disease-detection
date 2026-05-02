@@ -1,0 +1,196 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fish Disease Detection</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Slideshow Container */
+        .slideshow {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        /* Title with Letter-by-Letter Animation */
+        .title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 5rem;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 5px solid white;
+            animation: typing 3s steps(25) forwards, blink 0.7s infinite, fadeOut 2s 4s forwards;
+            z-index: 10;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; visibility: hidden; }
+        }
+
+        /* Menu Icon */
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            cursor: pointer;
+            color: white;
+            z-index: 1000;
+        }
+
+        /* Menu */
+        .menu {
+            position: absolute;
+            top: 60px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            width: 220px;
+            z-index: 1000;
+        }
+
+        .menu a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            transition: 0.4s;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Active Section */
+        section {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 2em;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .active-section {
+            display: flex;
+            animation: fadeIn 1.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slideshow -->
+    <div class="slideshow">
+        <div class="slide" style="background-image: url('/static/background 1.jpg');"></div>
+        <div class="slide" style="background-image: url('/static/background 2.jpg');"></div>
+        <div class="slide" style="background-image: url('/static/background 3.jpg');"></div>
+    </div>
+    
+    <!-- Title -->
+    <div class="title">Fish Disease Detection</div>
+
+    <!-- Menu Icon -->
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
+    <!-- Menu -->
+    <div class="menu" id="menu">  
+        <a href="http://127.0.0.1:5500/templates/About.html" onclick="showSection('About')">About</a>
+        <a href="http://127.0.0.1:5500/templates/prevention.html" onclick="showSection('Prevention')">Prevention & Causes</a>
+        <a href="http://127.0.0.1:5500/templates/index.html" onclick="showSection('Prediction')">Prediction</a>
+        <a href="http://127.0.0.1:5500/templates/Field%20work.html" onclick="showSection('Feild Work.html')">Feild Work</a>
+    </div>
+    
+    <!-- Sections -->
+    <section id="About">About Fish Disease Detection</section>
+    <section id="Prevention">Prevention & Causes of Fish Diseases</section>
+    <section id="Prediction">Prediction Model for Fish Diseases</section>
+
+    <script>
+        // Slideshow Functionality
+        let slides = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? "1" : "0";
+            });
+        }
+
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        // Auto-change slides every 4 seconds
+        showSlide(currentIndex);
+        setInterval(nextSlide, 4000);
+
+        // Toggle Menu
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Show Section
+        function showSection(sectionId) {
+            document.querySelectorAll('section').forEach(section => section.classList.remove('active-section'));
+            document.getElementById(sectionId).classList.add('active-section');
+            document.getElementById('menu').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
